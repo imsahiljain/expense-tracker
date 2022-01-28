@@ -68,6 +68,7 @@ const Form = (props) => {
           letterSpacing="-0.01em"
           fontWeight="500"
           mb="10"
+          fontFamily="Inter"
         >
           <AddIcon w={3} h={3} mr="2" mb=".5" fontWeight="semibold" />
           Add new expense

@@ -3,7 +3,7 @@ import ExpenseCard from "../expense-card/expense-card";
 
 const ExpenseContainer = (props) => {
   return (
-    <>
+    <div>
       {props.expenses.map((expense) => {
         return (
           <ExpenseCard
@@ -14,7 +14,7 @@ const ExpenseContainer = (props) => {
           />
         );
       })}
-    </>
+    </div>
   );
 };
 
