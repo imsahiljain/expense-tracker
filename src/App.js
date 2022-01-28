@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/navbar/navbar";
 import Form from "./components/form/form";
 import ExpenseContainer from "./components/expense-container/expense-container";
-import EXPENSES_DATA from "./expense-data.js";
 import Filter from "./components/filter/filter";
 
 const getLocalData = () => {
