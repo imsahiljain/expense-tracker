@@ -22,7 +22,8 @@ const Form = () => {
   const initialRef = React.useRef();
   const toast = useToast();
 
-  const toastOnClose = () => {
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
     onClose();
     toast({
       title: "New Expense Added.",
@@ -53,34 +54,31 @@ const Form = () => {
           <ModalHeader fontFamily="Inter">Add new expense</ModalHeader>
           <ModalCloseButton />
 
-          <ModalBody pb={6} fontFamily="Inter">
-            <FormControl isRequired>
-              <FormLabel>Expense Name</FormLabel>
-              <Input ref={initialRef} placeholder="Grocery" isRequired />
-            </FormControl>
+          <form onSubmit={handleOnSubmit}>
+            <ModalBody pb={6} fontFamily="Inter">
+              <FormControl isRequired>
+                <FormLabel>Expense Name</FormLabel>
+                <Input ref={initialRef} placeholder="Grocery" isRequired />
+              </FormControl>
 
-            <FormControl isRequired mt={4}>
-              <FormLabel>Amount</FormLabel>
-              <Input placeholder="&#8377;300" type="number" isRequired />
-            </FormControl>
+              <FormControl isRequired mt={4}>
+                <FormLabel>Amount</FormLabel>
+                <Input placeholder="&#8377;300" type="number" isRequired />
+              </FormControl>
 
-            <FormControl isRequired mt={4}>
-              <FormLabel>Date</FormLabel>
-              <Input placeholder="Date" type="date" isRequired />
-            </FormControl>
-          </ModalBody>
+              <FormControl isRequired mt={4}>
+                <FormLabel>Date</FormLabel>
+                <Input placeholder="Date" type="date" isRequired />
+              </FormControl>
+            </ModalBody>
 
-          <ModalFooter fontFamily="Inter">
-            <Button
-              colorScheme="blue"
-              mr={3}
-              type="submit"
-              onClick={toastOnClose}
-            >
-              Add expense
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
+            <ModalFooter fontFamily="Inter">
+              <Button colorScheme="blue" mr={3} type="submit">
+                Add expense
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </>
