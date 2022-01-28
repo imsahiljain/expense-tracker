@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -17,13 +17,35 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 
-const Form = () => {
+const Form = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef();
   const toast = useToast();
 
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
+
+  const nameOnChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const amountOnChange = (event) => {
+    setAmount(event.target.value);
+  };
+
+  const dateOnChange = (event) => {
+    setDate(event.target.value);
+  };
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    const newExpenseData = {
+      name: name,
+      amount: amount,
+      date: new Date(date).toLocaleString("en-GB").slice(0, 10),
+    };
+    props.getNewData(newExpenseData);
     onClose();
     toast({
       title: "New Expense Added.",
@@ -32,6 +54,9 @@ const Form = () => {
       duration: 4000,
       isClosable: true,
     });
+    setName("");
+    setAmount("");
+    setDate("");
   };
 
   return (
@@ -58,17 +83,35 @@ const Form = () => {
             <ModalBody pb={6} fontFamily="Inter">
               <FormControl isRequired>
                 <FormLabel>Expense Name</FormLabel>
-                <Input ref={initialRef} placeholder="Grocery" isRequired />
+                <Input
+                  ref={initialRef}
+                  value={name}
+                  onChange={nameOnChange}
+                  placeholder="Grocery"
+                  isRequired
+                />
               </FormControl>
 
               <FormControl isRequired mt={4}>
                 <FormLabel>Amount</FormLabel>
-                <Input placeholder="&#8377;300" type="number" isRequired />
+                <Input
+                  placeholder="&#8377;300"
+                  value={amount}
+                  onChange={amountOnChange}
+                  type="number"
+                  isRequired
+                />
               </FormControl>
 
               <FormControl isRequired mt={4}>
                 <FormLabel>Date</FormLabel>
-                <Input placeholder="Date" type="date" isRequired />
+                <Input
+                  placeholder="Date"
+                  value={date}
+                  onChange={dateOnChange}
+                  type="date"
+                  isRequired
+                />
               </FormControl>
             </ModalBody>
 
