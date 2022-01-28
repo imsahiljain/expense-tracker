@@ -7,7 +7,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-const ExpenseCard = ({ expenseName, amount, date }) => {
+const ExpenseCard = ({ name, amount, date }) => {
   return (
     <Flex mt={5} w="full" alignItems="center" justifyContent="center">
       <Box
@@ -40,7 +40,7 @@ const ExpenseCard = ({ expenseName, amount, date }) => {
             fontWeight="700"
             fontFamily="inter"
           >
-            {expenseName}
+            {name}
           </Heading>
           <chakra.p
             color={useColorModeValue("gray.600", "gray.300")}
