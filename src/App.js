@@ -3,6 +3,7 @@ import Navbar from "./components/navbar/navbar";
 import Form from "./components/form/form";
 import ExpenseContainer from "./components/expense-container/expense-container";
 import EXPENSES_DATA from "./expense-data.js";
+import Filter from "./components/filter/filter";
 
 const getLocalData = () => {
   let items = localStorage.getItem("expenses");
@@ -30,11 +31,21 @@ const App = () => {
     localStorage.setItem("expenses", JSON.stringify(data));
   }, [data]);
 
+  const [year, setYear] = useState("2022");
+  const getYear = (year) => {
+    setYear(year);
+  };
+
+  const filteredData = data.filter((expense) => {
+    return expense.date.includes(year);
+  });
+
   return (
     <>
       <Navbar />
       <Form getNewData={getNewData} />
-      <ExpenseContainer expenses={data} />
+      <Filter year={getYear} />
+      <ExpenseContainer expenses={filteredData} />
     </>
   );
 };
