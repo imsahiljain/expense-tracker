@@ -4,8 +4,17 @@ import Form from "./components/form/form";
 import ExpenseContainer from "./components/expense-container/expense-container";
 import EXPENSES_DATA from "./expense-data.js";
 
+const getLocalData = () => {
+  let items = localStorage.getItem("expenses");
+  if (items) {
+    return JSON.parse(localStorage.getItem("expenses"));
+  } else {
+    return [];
+  }
+};
+
 const App = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(getLocalData());
 
   const getNewData = (newExpenseData) => {
     const newData = {
@@ -16,6 +25,10 @@ const App = () => {
       return [newData, ...prevState];
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem("expenses", JSON.stringify(data));
+  }, [data]);
 
   return (
     <>
