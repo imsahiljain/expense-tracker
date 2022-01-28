@@ -1,13 +1,19 @@
 import React from "react";
 import ExpenseCard from "../expense-card/expense-card";
 
-const ExpenseContainer = () => {
+const ExpenseContainer = (props) => {
   return (
     <>
-      <ExpenseCard expenseName="Grocery" amount="300" date="13 feb" />
-      <ExpenseCard expenseName="sas" amount="300" date="13 feb" />
-      <ExpenseCard expenseName="sasasasa" amount="300" date="13 feb" />
-      <ExpenseCard expenseName="sasasasasa" amount="300" date="13 feb" />
+      {props.expenses.map((expense) => {
+        return (
+          <ExpenseCard
+            key={expense.id}
+            name={expense.name}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        );
+      })}
     </>
   );
 };
