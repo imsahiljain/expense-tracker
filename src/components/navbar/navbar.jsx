@@ -16,7 +16,7 @@ const Navbar = () => {
       <Spacer />
       <Box m="5">
         <IconButton mr="4" aria-label="Toggle Mode" onClick={toggleColorMode}>
-          {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
         </IconButton>
       </Box>
     </Flex>
